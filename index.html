@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자판기 만들기</title>
+    <link rel="stylesheet" href="style/common.css" />
+    <link rel="stylesheet" href="style/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1 class="a11y-hidden">벤딩머신</h1>
+
+      <!-- 첫번째 페이지 -->
+      <div class="first-container">
+        <h2 class="a11y-hidden">물건 리스트</h2>
+        <ul class="merchandise-wrapper">
+          <li class="product active">
+            <div class="sold-out a11y-hidden"><strong>품절</strong></div>
+            <img src="img/redcola.svg" alt="red cola" />
+            <p class="product-name">Original-Cola</p>
+            <p class="product-cost">1000원</p>
+          </li>
+          <li class="product disabled">
+            <div class="sold-out a11y-hidden"><strong>품절</strong></div>
+            <img src="img/violetcola.svg" alt="vidolet cola" />
+            <p class="product-name">Violet_Cola</p>
+            <p class="product-cost">1000원</p>
+          </li>
+          <li class="product">
+            <div class="sold-out a11y-hidden"><strong>품절</strong></div>
+            <img src="img/yellowcola.svg" alt="yello cola" />
+            <p class="product-name">Yello_Cola</p>
+            <p class="product-cost">1000원</p>
+          </li>
+          <li class="product">
+            <div class="sold-out a11y-hidden"><strong>품절</strong></div>
+            <img src="img/coolcola.svg" alt="cool cola" />
+            <p class="product-name">Cool_Cola</p>
+            <p class="product-cost">1000원</p>
+          </li>
+          <li class="product active">
+            <div class="sold-out a11y-hidden"><strong>품절</strong></div>
+            <img src="img/greencola.svg" alt="green cola" />
+            <p class="product-name">Green_Cola</p>
+            <p class="product-cost">1000원</p>
+          </li>
+          <li class="product">
+            <div class="sold-out a11y-hidden"><strong>품절</strong></div>
+            <img src="img/orangecola.svg" alt="orange cola" />
+            <p class="product-name">Orange_Cola</p>
+            <p class="product-cost">1000원</p>
+          </li>
+        </ul>
+
+        <div class="change-return">
+          <h2 class="a11y-hidden">거스름돈</h2>
+          <span class="balance">
+            <span>잔액:</span>
+            <span class="money">1,000 원</span>
+          </span>
+          <form>
+            <button class="return-change-btn" type="button">
+              거스름돈 반환
+            </button>
+          </form>
+        </div>
+
+        <div class="deposit">
+          <h2 class="a11y-hidden">입금</h2>
+          <form class="deposit-money">
+            <input
+              class="input-money"
+              type="number"
+              placeholder="입금액 입력"
+            />
+            <button class="deposit-btn" type="submit">입금</button>
+          </form>
+        </div>
+
+        <div class="order-list">
+          <h2 class="a11y-hidden">장바구니 주문하기</h2>
+          <ul class="product-in-cart">
+            <li class="product">
+              <img src="img/redcola.svg" alt="red cola" />
+              <p class="product-name">Original-Cola</p>
+              <p class="product-quantity">1</p>
+            </li>
+            <li class="product">
+              <img src="img/greencola.svg" alt="green cola" />
+              <p class="product-name">Green_Cola</p>
+              <p class="product-quantity">2</p>
+            </li>
+            <li class="product">
+              <img src="img/orangecola.svg" alt="orange cola" />
+              <p class="product-name">Orange_Cola</p>
+              <p class="product-quantity">1</p>
+            </li>
+            <li class="product">
+              <img src="img/violetcola.svg" alt="vidolet cola" />
+              <p class="product-name">Violet_Cola</p>
+              <p class="product-quantity">5</p>
+            </li>
+          </ul>
+          <!-- </div> -->
+          <form class="order">
+            <button class="order-btn" type="button">획득</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- 두번째 페이지 -->
+      <div class="second">
+        <!-- second -->
+        <div class="second-container">
+          <div class="wallet">
+            <h2 class="a11y-hidden">보유금액</h2>
+            <span>소지금:</span>
+            <span class="money"><strong>25,000 원</strong></span>
+          </div>
+        </div>
+
+        <!-- third -->
+        <div class="third-container">
+          <h2 class="product-purchased">획득한 음료</h2>
+          <ul class="product-in-cart">
+            <li class="product">
+              <img src="img/redcola.svg" alt="red cola" />
+              <span class="product-name">Original-Cola</span>
+              <span class="product-quantity">1</span>
+            </li>
+            <li class="product">
+              <img src="img/greencola.svg" alt="green cola" />
+              <span class="product-name">Green_Cola</span>
+              <span class="product-quantity">2</span>
+            </li>
+            <li class="product">
+              <img src="img/orangecola.svg" alt="orange cola" />
+              <span class="product-name">Orange_Cola</span>
+              <span class="product-quantity">1</span>
+            </li>
+            <li class="product">
+              <img src="img/violetcola.svg" alt="vidolet cola" />
+              <span class="product-name">Violet_Cola</span>
+              <span class="product-quantity">5</span>
+            </li>
+          </ul>
+          <div class="total-amount">총금액 : 9,000 원</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
