@@ -1,0 +1,20 @@
+{
+  "name": "vendingmachine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bringvotrevin/vendingMachine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bringvotrevin/vendingMachine/issues"
+  },
+  "homepage": "https://github.com/bringvotrevin/vendingMachine#readme"
+}
