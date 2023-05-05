@@ -44,7 +44,7 @@ div.first-container {
   cursor: pointer;
 }
 
-.merchandise-wrapper .product.active {
+.merchandise-wrapper .product:active {
   box-shadow: 0 0 0 3px #6327fe;
 }
 
@@ -138,7 +138,7 @@ div.first-container {
   display: flex;
   justify-content: space-between;
 }
-.deposit-money .input-money {
+.deposit-money #input-money {
   font-size: 13px;
   line-height: 33px;
   width: 200px;
@@ -146,10 +146,26 @@ div.first-container {
   border-radius: 5px;
   border: 1px solid #bdbdbd;
 }
-.deposit-money .input-money::-webkit-input-placeholder {
+.deposit-money #input-money::-webkit-input-placeholder {
   color: #dbdbdb;
 }
-.deposit-money .deposit-btn {
+.deposit-money .btn-500,
+.deposit-money .btn-1000,
+.deposit-money .btn-5000 {
+  /* border: 1px solid #6327fe; */
+  color: #6327fe;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+}
+
+.deposit-money .btn-500:active,
+.deposit-money .btn-1000:active,
+.deposit-money .btn-5000:active {
+  box-shadow: 0 0 0 3px #6327fe;
+}
+
+.deposit-money .btn-deposit {
   width: 94px;
   border: none;
   border-radius: 5px;
@@ -312,7 +328,7 @@ div.third-container {
     gap: 0;
     margin: 95px auto 30px auto;
   }
-  .deposit-money .input-money::-webkit-input-placeholder {
+  .deposit-money #input-money::-webkit-input-placeholder {
     text-align: end;
     padding-right: 10px;
   }

@@ -3,20 +3,23 @@
 
 export default class ColaGenerator {
 	constructor() {
-		this.merchandise = document.querySelector('.merchandise-wrapper');
+		this.$merchandise = document.querySelector('.merchandise-wrapper');
 	}
 
 	generate(cola) {
+		// NOTE cola 변수 저장?
+		// this.cola = cola;
 		this.addColaLi(cola);
+		
 	}
 
 	async addColaLi(cola) {
-		console.log(cola.getList);
+		// console.log(cola.getList);
 		const fragment = document.createDocumentFragment();
 		cola.getList.forEach((cur, i) => {
 			const li = document.createElement('li');
 			li.innerHTML = `
-				<li class="product active">
+				<li class="product">
           <div class="sold-out a11y-hidden"><strong>품절</strong></div>
           <img src="./img/${cur.img}" alt="${cur.name}" />
           <p class="product-name">${cur.name}</p>
@@ -25,6 +28,8 @@ export default class ColaGenerator {
 			`
 			fragment.appendChild(li);
 		})
-		this.merchandise.appendChild(fragment);
+		this.$merchandise.appendChild(fragment);
 	}
+
+	
 }
