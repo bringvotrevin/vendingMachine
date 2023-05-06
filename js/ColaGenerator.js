@@ -18,13 +18,13 @@ export default class ColaGenerator {
 		const fragment = document.createDocumentFragment();
 		cola.getList.forEach((cur, i) => {
 			const li = document.createElement('li');
+			li.className = 'product';
+			li.dataset.name = cur.name;
 			li.innerHTML = `
-				<li class="product">
-          <div class="sold-out a11y-hidden"><strong>품절</strong></div>
-          <img src="./img/${cur.img}" alt="${cur.name}" />
-          <p class="product-name">${cur.name}</p>
-          <p class="product-cost">${cur.cost + '원'}</p>
-        </li>
+        <div class="sold-out a11y-hidden"><strong>품절</strong></div>
+        <img src="./img/${cur.img}" alt="${cur.name}" />
+        <p class="product-name">${cur.name}</p>
+        <p class="product-cost">${cur.cost + '원'}</p>
 			`
 			fragment.appendChild(li);
 		})

@@ -10,8 +10,8 @@ const util = {
 		return parseInt(node.textContent.replaceAll(',', ''));
 	},
 
-	formatNumber(number) {
-		return Intl.NumberFormat().format(number) + '원';
+	formatMoney(money) {
+		return Intl.NumberFormat().format(money) + ' 원';
 	}
 }
 

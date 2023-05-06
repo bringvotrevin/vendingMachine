@@ -9,7 +9,7 @@ const start = async () => {
 	const cola = new ColaList();
 	await cola.setColaList('../item.json');
 	colaGenerator.generate(cola);
-	const vendingMachine = new VendingMachine();
+	const vendingMachine = new VendingMachine(cola);
 }
 
 

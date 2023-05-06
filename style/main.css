@@ -44,7 +44,7 @@ div.first-container {
   cursor: pointer;
 }
 
-.merchandise-wrapper .product:active {
+.merchandise-wrapper .product:not(.disabled):active {
   box-shadow: 0 0 0 3px #6327fe;
 }
 
@@ -147,7 +147,6 @@ div.first-container {
 .deposit .btn-500,
 .deposit .btn-1000,
 .deposit .btn-5000 {
-  border: 1px solid #6327fe;
   color: #6327fe;
   padding: 5px 8px;
   border-radius: 5px;
