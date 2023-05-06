@@ -18,12 +18,13 @@ export default class VendingMachine {
 	}
 
 	addDepositButtonEvent() {
+		const btnHundred = document.querySelector('.btn-100');
 		const btnFiveHundred = document.querySelector('.btn-500');
 		const btnThousand = document.querySelector('.btn-1000');
 		const btnFiveThousand = document.querySelector('.btn-5000');
+		btnHundred.addEventListener('click', this.deposit.bind(this));
 		btnFiveHundred.addEventListener('click', this.deposit.bind(this));
 		btnThousand.addEventListener('click', this.deposit.bind(this));
 		btnFiveThousand.addEventListener('click', this.deposit.bind(this));
-
 	}
 }

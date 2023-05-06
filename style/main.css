@@ -132,45 +132,33 @@ div.first-container {
 /* 입금 */
 
 .deposit {
+  font-size: 14px;
   margin-bottom: 11px;
-}
-.deposit-money {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.deposit-money #input-money {
-  font-size: 13px;
-  line-height: 33px;
-  width: 200px;
-  padding-left: 6px;
-  border-radius: 5px;
-  border: 1px solid #bdbdbd;
+
+.deposit .title {
+  margin-left: 8px;
 }
-.deposit-money #input-money::-webkit-input-placeholder {
-  color: #dbdbdb;
-}
-.deposit-money .btn-500,
-.deposit-money .btn-1000,
-.deposit-money .btn-5000 {
-  /* border: 1px solid #6327fe; */
+
+.deposit .btn-100,
+.deposit .btn-500,
+.deposit .btn-1000,
+.deposit .btn-5000 {
+  border: 1px solid #6327fe;
   color: #6327fe;
   padding: 5px 8px;
   border-radius: 5px;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
-.deposit-money .btn-500:active,
-.deposit-money .btn-1000:active,
-.deposit-money .btn-5000:active {
-  box-shadow: 0 0 0 3px #6327fe;
-}
-
-.deposit-money .btn-deposit {
-  width: 94px;
-  border: none;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+.deposit .btn-100:active,
+.deposit .btn-500:active,
+.deposit .btn-1000:active,
+.deposit .btn-5000:active {
+  box-shadow: 0 0 0 2px #6327fe;
 }
 
 /* 장바구니 주문하기 */
