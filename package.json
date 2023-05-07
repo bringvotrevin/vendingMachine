@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/bringvotrevin/vendingMachine/issues"
   },
-  "homepage": "https://github.com/bringvotrevin/vendingMachine#readme"
+  "homepage": "https://github.com/bringvotrevin/vendingMachine#readme",
+  "dependencies": {
+    "eslint": "^8.40.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
+  }
 }
