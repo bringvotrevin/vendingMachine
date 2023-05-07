@@ -9,7 +9,7 @@ export default class VendingMachine {
 		this.addDepositButtonEvent();
 		this.addColaButtonEvent(cola);
 		this.addReturnButtonEvent();
-		this.addPurchaseButtonEvent();
+		this.addPurchaseButtonEvent(cola);
 	}
 
 	deposit(event) {
@@ -61,7 +61,6 @@ export default class VendingMachine {
 
 				// TODO 분리
 				const liInCart = this.cart.querySelectorAll('li');
-				// this.addList(liInCart, curCola);
 				let isInCart = false;
 				liInCart.forEach((li) => {
 					if (li.dataset.name === curCola.name) {
@@ -78,9 +77,46 @@ export default class VendingMachine {
 					newLi.innerHTML = `
 					<img src="img/${curCola.img}" alt="${curCola.name}" />
 					<p class="product-name">${curCola.name}</p>
+					<button class="btn-decrease">-</button>
 					<p class="product-quantity">1</p>
+					<button class="btn-increase">+</button>
 					`;
 					this.cart.appendChild(newLi);
+					const btnDecrease = newLi.querySelector('.btn-decrease');
+					const btnIncrease = newLi.querySelector('.btn-increase');
+					btnDecrease.addEventListener('click', () => {
+						const $quantity = newLi.querySelector('.product-quantity');
+						let quantity = util.getNumber($quantity);
+						if (quantity === 1) {
+							// TODO 제거 확인 모달 추가
+							return ;
+						}
+						if (cola.getDetail(newLi.dataset.name).count == 0){
+							merchandise.querySelector('.sold-out').classList.add('a11y-hidden');
+							merchandise.classList.remove('disabled');
+						}
+						$quantity.textContent = --quantity;
+						cola.getDetail(newLi.dataset.name).count++;
+						this.inputBalance.textContent = util.formatMoney(util.getNumber(this.inputBalance) + cola.getDetail(newLi.dataset.name).cost);
+						// console.log(cola.getDetail(newLi.dataset.name).count);
+					});
+					btnIncrease.addEventListener('click', () => {
+						const $quantity = newLi.querySelector('.product-quantity');
+						let quantity = util.getNumber($quantity);
+						if (cola.getDetail(newLi.dataset.name).count == 0) return;
+						if (util.getNumber(this.inputBalance) < cola.getDetail(newLi.dataset.name).cost) {
+							alert('소지금이 부족합니다');
+							return ;
+						}
+						$quantity.textContent = ++quantity;
+						cola.getDetail(newLi.dataset.name).count--;
+						// console.log(cola.getDetail(newLi.dataset.name).count);
+						if (cola.getDetail(newLi.dataset.name).count == 0) {
+							merchandise.querySelector('.sold-out').classList.remove('a11y-hidden');
+							merchandise.classList.add('disabled');
+						}
+						this.inputBalance.textContent = util.formatMoney(util.getNumber(this.inputBalance) - cola.getDetail(newLi.dataset.name).cost);
+					});
 				}
 				curCola.count--;
 				this.inputBalance.textContent = util.formatMoney(util.getNumber(this.inputBalance) - curCola.cost);
@@ -111,7 +147,7 @@ export default class VendingMachine {
 		totalDiv.textContent = `총금액 : ${util.formatMoney(totalAmount)}`;
 	}
 
-	addPurchaseButtonEvent() {
+	addPurchaseButtonEvent(cola) {
 		const purchaseButton = document.querySelector('.order-list .btn-order');
 		const purchased = document.querySelector('.third-container .product-in-cart');
 		purchaseButton.addEventListener('click', () => {
@@ -129,12 +165,17 @@ export default class VendingMachine {
 					}
 				}
 				if (isPurchased === false) {
-						const newLi = document.createElement('li');
-						newLi.className = 'product';
-						newLi.dataset.name = inCart.dataset.name;
-						newLi.dataset.cost = inCart.dataset.cost;
-						newLi.innerHTML = inCart.innerHTML;
-						purchased.appendChild(newLi);
+					const newLi = document.createElement('li');
+					newLi.className = 'product';
+					newLi.dataset.name = inCart.dataset.name;
+					newLi.dataset.cost = inCart.dataset.cost;
+					newLi.innerHTML = inCart.innerHTML;
+					newLi.innerHTML = `
+						<img src="img/${cola.getDetail(inCart.dataset.name).img}" alt="${inCart.dataset.name}" />
+						<p class="product-name">${inCart.dataset.name}</p>
+						<p class="product-quantity">${util.getNumber(inCart.querySelector('.product-quantity'))}</p>
+					`;
+					purchased.appendChild(newLi);
 				}
 			})
 			this.cart.innerHTML = '';
