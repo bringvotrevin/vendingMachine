@@ -7,19 +7,16 @@ export default class ColaGenerator {
 	}
 
 	generate(cola) {
-		// NOTE cola 변수 저장?
-		// this.cola = cola;
 		this.addColaLi(cola);
-		
 	}
 
 	async addColaLi(cola) {
-		// console.log(cola.getList);
 		const fragment = document.createDocumentFragment();
 		cola.getList.forEach((cur, i) => {
 			const li = document.createElement('li');
 			li.className = 'product';
 			li.dataset.name = cur.name;
+			li.dataset.cost = cur.cost;
 			li.innerHTML = `
         <div class="sold-out a11y-hidden"><strong>품절</strong></div>
         <img src="./img/${cur.img}" alt="${cur.name}" />

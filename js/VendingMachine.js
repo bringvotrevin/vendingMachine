@@ -5,9 +5,11 @@ export default class VendingMachine {
 		this.merchandiseContainer = document.querySelector('merchandise-wrapper');
 		this.myAccount = document.querySelector('.wallet .money strong');
 		this.inputBalance = document.querySelector('.balance .money');
-		this.cart = document.querySelector('.product-in-cart');
+		this.cart = document.querySelector('.order-list .product-in-cart');
 		this.addDepositButtonEvent();
 		this.addColaButtonEvent(cola);
+		this.addReturnButtonEvent();
+		this.addPurchaseButtonEvent();
 	}
 
 	deposit(event) {
@@ -16,7 +18,7 @@ export default class VendingMachine {
 			this.myAccount.textContent = util.formatMoney(util.getNumber(this.myAccount) - util.getNumber(event.target));
 		} else {
 			// TODO error처리
-			console.log('소지금 부족');
+			alert('소지금이 부족합니다.');
 		}
 	}
 
@@ -31,13 +33,6 @@ export default class VendingMachine {
 		btnFiveThousand.addEventListener('click', this.deposit.bind(this));
 	}
 
-
-	// <click Event>
-	// 잔고 있는지 확인
-	// merchandise 재고 있는지 확인
-	// 수량 --하기
-	// li 이미 있는지 확인
-	// li 추가 or li 내의 수량 ++
 	checkBalance(merchandise) {
 		const merchandiseCost = util.getNumber(merchandise.querySelector('.product-cost'));
 		const currentBalance = util.getNumber(this.inputBalance);
@@ -54,7 +49,6 @@ export default class VendingMachine {
 		const merchandiseList = document.querySelectorAll('.product');
 		merchandiseList.forEach((merchandise) => {
 			const curCola = cola.getDetail(merchandise.dataset.name);
-			// console.log(curCola);
 			merchandise.addEventListener('click', () => {
 				if (curCola.count === 0) {
 					return ;
@@ -64,8 +58,11 @@ export default class VendingMachine {
 					alert('잔액이 적습니다.')
 					return ;
 				}
-				let isInCart = false;
+
+				// TODO 분리
 				const liInCart = this.cart.querySelectorAll('li');
+				// this.addList(liInCart, curCola);
+				let isInCart = false;
 				liInCart.forEach((li) => {
 					if (li.dataset.name === curCola.name) {
 						const quantity = li.querySelector('.product-quantity');
@@ -77,6 +74,7 @@ export default class VendingMachine {
 					const newLi = document.createElement('li');
 					newLi.className = 'product';
 					newLi.dataset.name = curCola.name;
+					newLi.dataset.cost = curCola.cost;
 					newLi.innerHTML = `
 					<img src="img/${curCola.img}" alt="${curCola.name}" />
 					<p class="product-name">${curCola.name}</p>
@@ -91,7 +89,56 @@ export default class VendingMachine {
 					const soldOutDiv = merchandise.querySelector('.sold-out');
 					soldOutDiv.classList.remove('a11y-hidden');
 				}
-				})
 			})
-		}
+		})
 	}
+
+	addReturnButtonEvent() {
+		const returnButton = document.querySelector('.btn-return-change');
+		returnButton.addEventListener('click', () => {
+			const balance = util.getNumber(this.inputBalance);
+			const myAccount = util.getNumber(this.myAccount);
+			this.myAccount.textContent = util.formatMoney(myAccount + balance);
+			this.inputBalance.textContent = util.formatMoney(0);
+		})
+	}
+
+	setTotalAmount(liPurchased) {
+		const totalDiv = document.querySelector('.total-amount');
+		const totalAmount = [...liPurchased].reduce((acc, cur) => {
+			return acc += cur.querySelector('.product-quantity').textContent * cur.dataset.cost;
+		}, 0);
+		totalDiv.textContent = `총금액 : ${util.formatMoney(totalAmount)}`;
+	}
+
+	addPurchaseButtonEvent() {
+		const purchaseButton = document.querySelector('.order-list .btn-order');
+		const purchased = document.querySelector('.third-container .product-in-cart');
+		purchaseButton.addEventListener('click', () => {
+			const liInCart = this.cart.querySelectorAll('li');
+			const liPurchased = purchased.querySelectorAll('li');
+			liInCart.forEach((inCart) => {
+				let isPurchased = false;
+				for(let purchased of liPurchased) {
+					if (purchased.dataset.name === inCart.dataset.name) {
+						const quantity = inCart.querySelector('.product-quantity');
+						const newQ = purchased.querySelector('.product-quantity');
+						newQ.textContent = util.getNumber(quantity) + util.getNumber(newQ);
+						isPurchased = true;
+						break;
+					}
+				}
+				if (isPurchased === false) {
+						const newLi = document.createElement('li');
+						newLi.className = 'product';
+						newLi.dataset.name = inCart.dataset.name;
+						newLi.dataset.cost = inCart.dataset.cost;
+						newLi.innerHTML = inCart.innerHTML;
+						purchased.appendChild(newLi);
+				}
+			})
+			this.cart.innerHTML = '';
+			this.setTotalAmount(purchased.querySelectorAll('li'));
+		})
+	}
+}

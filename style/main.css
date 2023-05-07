@@ -120,7 +120,7 @@ div.first-container {
 .change-return form {
   display: inherit;
 }
-.change-return .return-change-btn {
+.change-return .btn-return-change {
   width: 94px;
   font-size: 13px;
   border: none;
@@ -220,7 +220,7 @@ div.first-container {
   margin: 0 10px 0 auto;
 }
 
-.order-list .order-btn {
+.order-list .btn-order {
   width: 94px;
   height: 106px;
   border: none;
@@ -293,7 +293,7 @@ div.third-container {
 .third-container .product-in-cart .product:last-child {
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 1000px;
+  /* margin-bottom: 1000px; */
   border-radius: 5px;
 }
 
