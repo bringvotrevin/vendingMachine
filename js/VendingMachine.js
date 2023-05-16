@@ -79,10 +79,12 @@ export default class VendingMachine {
 					<p class="product-name">${curCola.name}</p>
 					<button class="btn-decrease">-</button>
 					<p class="product-quantity">1</p>
-					<button class="btn-increase">+</button>`;
+					<button class="btn-increase">+</button>
+					<butotn class="btn-delete"><button>`;
           this.cart.appendChild(newLi);
           const btnDecrease = newLi.querySelector('.btn-decrease');
           const btnIncrease = newLi.querySelector('.btn-increase');
+          const btnDelete = newLi.querySelector('.btn-delete');
           btnDecrease.addEventListener('click', () => {
             const $quantity = newLi.querySelector('.product-quantity');
             let quantity = util.getNumber($quantity);
@@ -115,6 +117,17 @@ export default class VendingMachine {
               merchandise.classList.add('disabled');
             }
             this.inputBalance.textContent = util.formatMoney(util.getNumber(this.inputBalance) - cola.getDetail(newLi.dataset.name).cost);
+          });
+          btnDelete.addEventListener('click', () => {
+            const $quantity = newLi.querySelector('.product-quantity');
+            const quantity = util.getNumber($quantity);
+            if (cola.getDetail(newLi.dataset.name).count === 0) {
+              merchandise.querySelector('.sold-out').classList.add('a11y-hidden');
+              merchandise.classList.remove('disabled');
+            }
+            cola.getDetail(newLi.dataset.name).count += quantity;
+            this.inputBalance.textContent = util.formatMoney(util.getNumber(this.inputBalance) + cola.getDetail(newLi.dataset.name).cost * quantity);
+            this.cart.removeChild(newLi);
           });
         }
         curCola.count--;

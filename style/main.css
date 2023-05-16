@@ -175,7 +175,7 @@ div.first-container {
   background-color: #eae8fe;
   border-radius: 5px;
   border: 1px solid #bdbdbd;
-  padding: 12px;
+  padding: 8px;
   overflow-y: scroll;
 }
 
@@ -194,7 +194,7 @@ div.first-container {
 }
 
 .product-in-cart .product {
-  width: 100%;
+  width: 95%;
   height: 46px;
   margin-bottom: 6px;
   font-size: 9px;
@@ -203,6 +203,7 @@ div.first-container {
   display: flex;
   align-items: center;
   border-radius: 5px;
+  position: relative;
 }
 
 .product-in-cart .product img {
@@ -230,6 +231,15 @@ div.first-container {
   font-size: 20px;
   color: #bdbdbd;
   margin: 0 5px 0 0;
+}
+
+.product-in-cart .btn-delete {
+  position: absolute;
+  content: '';
+  right: -17px;
+  width: 13px;
+  height: 13px;
+  background: url(../img/remove.png) no-repeat center / cover;
 }
 
 .order-list .product-in-cart .product-quantity {
