@@ -10,7 +10,7 @@ export default class ColaGenerator {
     this.addColaLi(cola);
   }
 
-  async addColaLi(cola) {
+  addColaLi(cola) {
     const fragment = document.createDocumentFragment();
     cola.getList.forEach((cur) => {
       const li = document.createElement('li');
