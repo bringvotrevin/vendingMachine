@@ -75,7 +75,7 @@ export default class VendingMachine {
           newLi.dataset.name = curCola.name;
           newLi.dataset.cost = curCola.cost;
           newLi.innerHTML = `
-					<img src="img/${curCola.img}" alt="${curCola.name}" />
+					<img src="./img/${curCola.img}" alt="${curCola.name}" />
 					<p class="product-name">${curCola.name}</p>
 					<button class="btn-decrease">-</button>
 					<p class="product-quantity">1</p>
@@ -181,7 +181,7 @@ export default class VendingMachine {
           newLi.dataset.cost = inCart.dataset.cost;
           newLi.innerHTML = inCart.innerHTML;
           newLi.innerHTML = `
-						<img src="img/${cola.getDetail(inCart.dataset.name).img}" alt="${inCart.dataset.name}" />
+						<img src="./img/${cola.getDetail(inCart.dataset.name).img}" alt="${inCart.dataset.name}" />
 						<p class="product-name">${inCart.dataset.name}</p>
 						<p class="product-quantity">${util.getNumber(inCart.querySelector('.product-quantity'))}</p>`;
           purchased.appendChild(newLi);
